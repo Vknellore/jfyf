@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JFYF®</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap');
+        
+        :root {
+            --black: #0a0a0a;
+            --offwhite: #f5f5f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--black);
+            color: var(--offwhite);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 4rem;
+            border-bottom: 1px solid rgba(245, 245, 245, 0.1);
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        nav a {
+            color: var(--offwhite);
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.7;
+        }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://picsum.photos/id/1015/2000/1200');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .hero-text {
+            text-align: center;
+        }
+        
+        .hero-text h1 {
+            font-size: 8rem;
+            font-weight: 400;
+            letter-spacing: -4px;
+            line-height: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 4px;
+            font-weight: 300;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            letter-spacing: 3px;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+        }
+        
+        .enter-btn {
+            display: inline-block;
+            border: 1px solid var(--offwhite);
+            padding: 1.2rem 3rem;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: var(--offwhite);
+            transition: all 0.4s;
+        }
+        
+        .enter-btn:hover {
+            background: var(--offwhite);
+            color: var(--black);
+        }
+        
+        .hero-right {
+            text-align: right;
+            max-width: 300px;
+            margin-left: auto;
+        }
+        
+        .hero-right p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+        
+        .sections {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+        
+        .section-card {
+            position: relative;
+            height: 420px;
+            overflow: hidden;
+            border-right: 1px solid rgba(245,245,245,0.1);
+        }
+        
+        .section-card:last-child {
+            border-right: none;
+        }
+        
+        .section-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .section-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .section-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 3rem 2.5rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.95));
+        }
+        
+        .section-label {
+            font-size: 4rem;
+            font-weight: 700;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-title {
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        
+        .section-desc {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            opacity: 0.85;
+        }
+        
+        .explore {
+            color: var(--offwhite);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .archive {
+            padding: 6rem 4rem;
+            background: var(--black);
+        }
+        
+        .archive-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 3rem;
+        }
+        
+        .archive-title {
+            font-size: 2.2rem;
+        }
+        
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .archive-card {
+            background: #111;
+            padding: 2rem;
+            border: 1px solid rgba(245,245,245,0.1);
+            transition: all 0.3s;
+        }
+        
+        .archive-card:hover {
+            border-color: rgba(245,245,245,0.4);
+            transform: translateY(-5px);
+        }
+        
+        .card-id {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            opacity: 0.6;
+            margin-bottom: 1rem;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .card-date {
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+        
+        footer {
+            background: #050505;
+            padding: 4rem;
+            border-top: 1px solid rgba(245,245,245,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        
+        .socials {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 1200px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-right {
+                margin: 0 auto;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo serif">JFYF®</div>
+        <nav>
+            <ul>
+                <li><a href="#">PHILOSOPHY</a></li>
+                <li><a href="#">KEY PRINCIPLES</a></li>
+                <li><a href="#">IDENTITY</a></li>
+                <li><a href="#">LUXURY IN RESTRAINT</a></li>
+                <li><a href="#">ARCHIVE</a></li>
+                <li><a href="#">COLLECTION</a></li>
+            </ul>
+        </nav>
+        <div style="font-size: 1.8rem; cursor: pointer;">☰</div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="serif">JFYF®</h1>
+                <p class="tagline">JUST FACE YOUR FEARS</p>
+                <p class="subtitle">DISCIPLINE. TRANSFORMATION. LEGACY.</p>
+                <a href="#" onclick="enterSite()" class="enter-btn">ENTER</a>
+            </div>
+            
+            <div class="hero-right">
+                <p>NOT FOR EVERYONE.<br>BUILT FOR A FEW.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="sections">
+        <!-- Philosophy -->
+        <div class="section-card">
+            <img src="https://picsum.photos/id/1016/600/420" alt="Philosophy">
+            <div class="section-overlay">
+                <div class="section-label serif">PH</div>
+                <div class="section-title">PHILOSOPHY</div>
+                <div class="section-desc">Ideas that shape the mind and define direction.</div>
+                <a href="#" class="explore">EXPLORE →</a>
+            </div>
+        </div>
+        
+        <!-- Key Principles -->
+        <div class="section-card">
+            <img src="https://picsum.photos/id/870/600/420" alt="Key Principles">
+            <div class="section-overlay">
+                <div class="section-label serif">KP</div>
+                <div class="section-title">KEY PRINCIPLES</div>
+                <div class="section-desc">The non-negotiables that guide every decision we make.</div>
+                <a href="#" class="explore">EXPLORE →</a>
+            </div>
+        </div>
+        
+        <!-- Identity -->
+        <div class="section-card">
+            <img src="https://picsum.photos/id/201/600/420" alt="Identity">
+            <div class="section-overlay">
+                <div class="section-label serif">ID</div>
+                <div class="section-title">IDENTITY</div>
+                <div class="section-desc">Truths about self that time can’t erase.</div>
+                <a href="#" class="explore">EXPLORE →</a>
+            </div>
+        </div>
+        
+        <!-- Luxury in Restraint -->
+        <div class="section-card">
+            <img src="https://picsum.photos/id/1018/600/420" alt="Luxury in Restraint">
+            <div class="section-overlay">
+                <div class="section-label serif">LR</div>
+                <div class="section-title">LUXURY IN RESTRAINT</div>
+                <div class="section-desc">The art of saying less so the meaning speaks more.</div>
+                <a href="#" class="explore">EXPLORE →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="archive">
+        <div class="archive-header">
+            <div>
+                <div style="font-size: 0.9rem; letter-spacing: 3px; opacity: 0.6;">THE ARCHIVE</div>
+                <h2 class="archive-title">A chronological record of our thoughts, principles and identity.</h2>
+            </div>
+            <a href="#" style="color: white; text-decoration: none; font-size: 0.95rem; border-bottom: 1px solid rgba(255,255,255,0.5);">VIEW ALL →</a>
+        </div>
+        
+        <div class="archive-grid">
+            <div class="archive-card">
+                <div class="card-id">ID-005</div>
+                <div class="card-title">TIME REVEALS WHO WE ARE.</div>
+                <div class="card-date">JUNE 2026</div>
+            </div>
+            <div class="archive-card">
+                <div class="card-id">PH-005</div>
+                <div class="card-title">SOME CHAPTERS END BEFORE YOU REALISE THEY ARE OVER.</div>
+                <div class="card-date">JUNE 2026</div>
+            </div>
+            <div class="archive-card">
+                <div class="card-id">PH-004</div>
+                <div class="card-title">SILENCE IS NOT ABSENCE.</div>
+                <div class="card-date">JUNE 2026</div>
+            </div>
+            <div class="archive-card">
+                <div class="card-id">ID-004</div>
+                <div class="card-title">NOT EVERYONE WILL UNDERSTAND. NOT EVERYONE SHOULD.</div>
+                <div class="card-date">JUNE 2026</div>
+            </div>
+            <div class="archive-card">
+                <div class="card-id">ID-003</div>
+                <div class="card-title">YOUR LIFE IS YOUR MESSAGE.</div>
+                <div class="card-date">JUNE 2026</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="logo serif">JFYF®</div>
+                <p style="margin-top: 1rem; opacity: 0.6; font-size: 0.9rem;">© 2026 JFYF COLLECTIVE. ALL RIGHTS RESERVED.</p>
+            </div>
+            
+            <div style="display: flex; gap: 4rem;">
+                <div>
+                    <a href="#" style="color: white; text-decoration: none; display: block; margin-bottom: 0.8rem;">ARCHIVE</a>
+                    <a href="#" style="color: white; text-decoration: none; display: block; margin-bottom: 0.8rem;">COLLECTION</a>
+                    <a href="#" style="color: white; text-decoration: none; display: block;">CONTACT</a>
+                </div>
+            </div>
+            
+            <div class="socials">
+                <a href="#" style="color: white; text-decoration: none;">INSTAGRAM @JFYFCOLLECTIVE</a>
+                <a href="#" style="color: white; text-decoration: none;">TIKTOK @JFYFCOLLECTIVE</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function enterSite() {
+            alert("Welcome to the JFYF® world.");
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        }
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const enterBtn = document.querySelector('.enter-btn');
+                if (enterBtn) enterBtn.click();
+            }
+        });
+    </script>
+</body>
+</html>
