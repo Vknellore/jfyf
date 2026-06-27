@@ -6,298 +6,258 @@
     <title>JFYF®</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap');
-        
+
         :root {
-            --black: #0a0a0a;
+            --black: #050505;
             --offwhite: #f5f5f5;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Inter', system-ui, sans-serif;
-            background-color: var(--black);
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
             color: var(--offwhite);
             overflow-x: hidden;
-            line-height: 1.6;
         }
-        
-        .serif {
-            font-family: 'Playfair Display', serif;
-        }
-        
+
+        .serif { font-family: 'Playfair Display', serif; }
+
+        /* SMOOTH HEADER */
         header {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem 4rem;
-            border-bottom: 1px solid rgba(245, 245, 245, 0.1);
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
+            padding: 2rem 5rem;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.4s ease;
         }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 2px;
+
+        header.scrolled {
+            padding: 1.4rem 5rem;
+            background: rgba(5, 5, 5, 0.98);
         }
-        
+
+        .logo { 
+            font-size: 1.65rem; 
+            letter-spacing: 4px; 
+            font-weight: 700; 
+        }
+
         nav ul {
             display: flex;
+            gap: 3rem;
             list-style: none;
-            gap: 2.5rem;
         }
-        
+
         nav a {
-            color: var(--offwhite);
+            color: white;
             text-decoration: none;
             font-size: 0.95rem;
-            letter-spacing: 1px;
-            transition: opacity 0.3s;
+            letter-spacing: 1.5px;
+            transition: opacity 0.4s ease;
         }
-        
-        nav a:hover {
-            opacity: 0.7;
-        }
-        
+
+        nav a:hover { opacity: 0.6; }
+
+        /* HERO */
         .hero {
             height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.92)), 
+                        url('https://picsum.photos/id/1015/2000/1300') center/cover no-repeat;
             display: flex;
             align-items: center;
+            justify-content: center;
             position: relative;
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://picsum.photos/id/1015/2000/1200');
-            background-size: cover;
-            background-position: center;
         }
-        
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 4rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            width: 100%;
-        }
-        
-        .hero-text {
-            text-align: center;
-        }
-        
-        .hero-text h1 {
-            font-size: 8rem;
+
+        .hero-content { text-align: center; z-index: 2; }
+
+        .hero h1 {
+            font-size: 10.2rem;
+            letter-spacing: -8px;
+            line-height: 0.82;
             font-weight: 400;
-            letter-spacing: -4px;
-            line-height: 0.9;
             margin-bottom: 1rem;
         }
-        
+
         .tagline {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            letter-spacing: 4px;
+            font-size: 1.9rem;
+            letter-spacing: 6px;
             font-weight: 300;
+            margin-bottom: 0.5rem;
         }
-        
+
         .subtitle {
-            font-size: 1rem;
-            letter-spacing: 3px;
-            opacity: 0.8;
-            margin-bottom: 3rem;
+            font-size: 1.05rem;
+            letter-spacing: 4px;
+            opacity: 0.85;
+            margin-bottom: 4rem;
         }
-        
+
         .enter-btn {
-            display: inline-block;
-            border: 1px solid var(--offwhite);
-            padding: 1.2rem 3rem;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-decoration: none;
-            color: var(--offwhite);
-            transition: all 0.4s;
-        }
-        
-        .enter-btn:hover {
-            background: var(--offwhite);
-            color: var(--black);
-        }
-        
-        .hero-right {
-            text-align: right;
-            max-width: 300px;
-            margin-left: auto;
-        }
-        
-        .hero-right p {
+            border: 1px solid rgba(255,255,255,0.85);
+            padding: 1.5rem 4.8rem;
             font-size: 0.95rem;
-            line-height: 1.8;
-            opacity: 0.8;
+            letter-spacing: 3px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.6s ease;
         }
-        
+
+        .enter-btn:hover {
+            background: white;
+            color: black;
+            transform: scale(1.05);
+        }
+
+        .hero-right {
+            position: absolute;
+            bottom: 10%;
+            right: 8%;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            max-width: 240px;
+            text-align: right;
+        }
+
+        /* FOUR SECTIONS */
         .sections {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 0;
         }
-        
+
         .section-card {
             position: relative;
-            height: 420px;
+            height: 480px;
             overflow: hidden;
-            border-right: 1px solid rgba(245,245,245,0.1);
+            border-right: 1px solid rgba(255,255,255,0.06);
         }
-        
-        .section-card:last-child {
-            border-right: none;
-        }
-        
+
+        .section-card:last-child { border-right: none; }
+
         .section-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
-        
+
         .section-card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
-        
+
         .section-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 3rem 2.5rem;
-            background: linear-gradient(transparent, rgba(0,0,0,0.95));
+            padding: 3.5rem 2.8rem 2.8rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.97));
         }
-        
+
         .section-label {
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 700;
-            opacity: 0.9;
-            margin-bottom: 0.5rem;
+            opacity: 0.95;
         }
-        
+
         .section-title {
             font-size: 0.95rem;
             letter-spacing: 2px;
-            margin-bottom: 1rem;
+            margin: 0.8rem 0 1.2rem;
         }
-        
+
         .section-desc {
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 2rem;
+            font-size: 0.96rem;
+            line-height: 1.55;
             opacity: 0.85;
+            margin-bottom: 2rem;
         }
-        
+
         .explore {
-            color: var(--offwhite);
+            color: white;
             text-decoration: none;
-            font-size: 0.85rem;
-            letter-spacing: 1.5px;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
         }
-        
+
+        /* ARCHIVE */
         .archive {
-            padding: 6rem 4rem;
+            padding: 8rem 5rem 6rem;
             background: var(--black);
         }
-        
+
         .archive-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
-        
-        .archive-title {
-            font-size: 2.2rem;
-        }
-        
+
         .archive-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 2rem;
         }
-        
+
         .archive-card {
-            background: #111;
-            padding: 2rem;
-            border: 1px solid rgba(245,245,245,0.1);
-            transition: all 0.3s;
+            background: #0f0f0f;
+            padding: 2.4rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.5s ease;
         }
-        
+
         .archive-card:hover {
-            border-color: rgba(245,245,245,0.4);
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            border-color: rgba(255,255,255,0.25);
         }
-        
+
         .card-id {
             font-size: 0.8rem;
             letter-spacing: 2px;
             opacity: 0.6;
             margin-bottom: 1rem;
         }
-        
-        .card-title {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-        
-        .card-date {
-            font-size: 0.85rem;
-            opacity: 0.6;
-        }
-        
+
+        /* FOOTER */
         footer {
-            background: #050505;
-            padding: 4rem;
-            border-top: 1px solid rgba(245,245,245,0.1);
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
+            background: #0a0a0a;
+            padding: 5rem 5rem 3rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
         }
-        
+
         .footer-content {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 3rem;
         }
-        
-        .socials {
-            display: flex;
-            gap: 2rem;
+
+        .socials a {
+            color: white;
+            text-decoration: none;
+            margin-right: 2.5rem;
+            transition: opacity 0.3s;
         }
-        
-        @media (max-width: 1200px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .hero-right {
-                margin: 0 auto;
-                text-align: center;
-            }
+
+        .socials a:hover { opacity: 0.6; }
+
+        @media (max-width: 1100px) {
+            .hero h1 { font-size: 7rem; }
+            .sections { grid-template-columns: 1fr 1fr; }
+            header { padding: 1.5rem 2rem; }
         }
     </style>
 </head>
 <body>
-    <header>
+
+    <header id="header">
         <div class="logo serif">JFYF®</div>
         <nav>
             <ul>
@@ -309,28 +269,25 @@
                 <li><a href="#">COLLECTION</a></li>
             </ul>
         </nav>
-        <div style="font-size: 1.8rem; cursor: pointer;">☰</div>
+        <div style="font-size: 1.9rem; cursor: pointer;">☰</div>
     </header>
 
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="serif">JFYF®</h1>
-                <p class="tagline">JUST FACE YOUR FEARS</p>
-                <p class="subtitle">DISCIPLINE. TRANSFORMATION. LEGACY.</p>
-                <a href="#" onclick="enterSite()" class="enter-btn">ENTER</a>
-            </div>
-            
-            <div class="hero-right">
-                <p>NOT FOR EVERYONE.<br>BUILT FOR A FEW.</p>
-            </div>
+            <h1 class="serif">JFYF®</h1>
+            <p class="tagline">JUST FACE YOUR FEARS</p>
+            <p class="subtitle">DISCIPLINE. TRANSFORMATION. LEGACY.</p>
+            <a href="#" onclick="enterSite()" class="enter-btn">ENTER</a>
+        </div>
+        <div class="hero-right">
+            NOT FOR EVERYONE.<br>BUILT FOR A FEW.
         </div>
     </section>
 
     <section class="sections">
-        <!-- Philosophy -->
+        <!-- PH -->
         <div class="section-card">
-            <img src="https://picsum.photos/id/1016/600/420" alt="Philosophy">
+            <img src="https://picsum.photos/id/1016/800/600" alt="Philosophy">
             <div class="section-overlay">
                 <div class="section-label serif">PH</div>
                 <div class="section-title">PHILOSOPHY</div>
@@ -338,10 +295,9 @@
                 <a href="#" class="explore">EXPLORE →</a>
             </div>
         </div>
-        
-        <!-- Key Principles -->
+        <!-- KP -->
         <div class="section-card">
-            <img src="https://picsum.photos/id/870/600/420" alt="Key Principles">
+            <img src="https://picsum.photos/id/870/800/600" alt="Key Principles">
             <div class="section-overlay">
                 <div class="section-label serif">KP</div>
                 <div class="section-title">KEY PRINCIPLES</div>
@@ -349,10 +305,9 @@
                 <a href="#" class="explore">EXPLORE →</a>
             </div>
         </div>
-        
-        <!-- Identity -->
+        <!-- ID -->
         <div class="section-card">
-            <img src="https://picsum.photos/id/201/600/420" alt="Identity">
+            <img src="https://picsum.photos/id/201/800/600" alt="Identity">
             <div class="section-overlay">
                 <div class="section-label serif">ID</div>
                 <div class="section-title">IDENTITY</div>
@@ -360,10 +315,9 @@
                 <a href="#" class="explore">EXPLORE →</a>
             </div>
         </div>
-        
-        <!-- Luxury in Restraint -->
+        <!-- LR -->
         <div class="section-card">
-            <img src="https://picsum.photos/id/1018/600/420" alt="Luxury in Restraint">
+            <img src="https://picsum.photos/id/1018/800/600" alt="Luxury in Restraint">
             <div class="section-overlay">
                 <div class="section-label serif">LR</div>
                 <div class="section-title">LUXURY IN RESTRAINT</div>
@@ -376,37 +330,37 @@
     <section class="archive">
         <div class="archive-header">
             <div>
-                <div style="font-size: 0.9rem; letter-spacing: 3px; opacity: 0.6;">THE ARCHIVE</div>
-                <h2 class="archive-title">A chronological record of our thoughts, principles and identity.</h2>
+                <div style="font-size: 0.9rem; letter-spacing: 3px; opacity: 0.6; margin-bottom: 0.5rem;">THE ARCHIVE</div>
+                <h2 style="font-size: 2.3rem; max-width: 620px;">A chronological record of our thoughts, principles and identity.</h2>
             </div>
-            <a href="#" style="color: white; text-decoration: none; font-size: 0.95rem; border-bottom: 1px solid rgba(255,255,255,0.5);">VIEW ALL →</a>
+            <a href="#" style="color:white; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.5); align-self:flex-end;">VIEW ALL →</a>
         </div>
-        
+
         <div class="archive-grid">
             <div class="archive-card">
                 <div class="card-id">ID-005</div>
                 <div class="card-title">TIME REVEALS WHO WE ARE.</div>
-                <div class="card-date">JUNE 2026</div>
+                <div class="card-date" style="margin-top: 2rem; opacity: 0.6;">JUNE 2026</div>
             </div>
             <div class="archive-card">
                 <div class="card-id">PH-005</div>
                 <div class="card-title">SOME CHAPTERS END BEFORE YOU REALISE THEY ARE OVER.</div>
-                <div class="card-date">JUNE 2026</div>
+                <div class="card-date" style="margin-top: 2rem; opacity: 0.6;">JUNE 2026</div>
             </div>
             <div class="archive-card">
                 <div class="card-id">PH-004</div>
                 <div class="card-title">SILENCE IS NOT ABSENCE.</div>
-                <div class="card-date">JUNE 2026</div>
+                <div class="card-date" style="margin-top: 2rem; opacity: 0.6;">JUNE 2026</div>
             </div>
             <div class="archive-card">
                 <div class="card-id">ID-004</div>
                 <div class="card-title">NOT EVERYONE WILL UNDERSTAND. NOT EVERYONE SHOULD.</div>
-                <div class="card-date">JUNE 2026</div>
+                <div class="card-date" style="margin-top: 2rem; opacity: 0.6;">JUNE 2026</div>
             </div>
             <div class="archive-card">
                 <div class="card-id">ID-003</div>
                 <div class="card-title">YOUR LIFE IS YOUR MESSAGE.</div>
-                <div class="card-date">JUNE 2026</div>
+                <div class="card-date" style="margin-top: 2rem; opacity: 0.6;">JUNE 2026</div>
             </div>
         </div>
     </section>
@@ -415,39 +369,40 @@
         <div class="footer-content">
             <div>
                 <div class="logo serif">JFYF®</div>
-                <p style="margin-top: 1rem; opacity: 0.6; font-size: 0.9rem;">© 2026 JFYF COLLECTIVE. ALL RIGHTS RESERVED.</p>
+                <p style="margin-top: 1.5rem; opacity: 0.6;">© 2026 JFYF COLLECTIVE. ALL RIGHTS RESERVED.</p>
             </div>
             
-            <div style="display: flex; gap: 4rem;">
-                <div>
-                    <a href="#" style="color: white; text-decoration: none; display: block; margin-bottom: 0.8rem;">ARCHIVE</a>
-                    <a href="#" style="color: white; text-decoration: none; display: block; margin-bottom: 0.8rem;">COLLECTION</a>
-                    <a href="#" style="color: white; text-decoration: none; display: block;">CONTACT</a>
-                </div>
+            <div>
+                <a href="#" style="color:white; text-decoration:none; display:block; margin-bottom:12px;">ARCHIVE</a>
+                <a href="#" style="color:white; text-decoration:none; display:block; margin-bottom:12px;">COLLECTION</a>
+                <a href="#" style="color:white; text-decoration:none;">CONTACT</a>
             </div>
             
             <div class="socials">
-                <a href="#" style="color: white; text-decoration: none;">INSTAGRAM @JFYFCOLLECTIVE</a>
-                <a href="#" style="color: white; text-decoration: none;">TIKTOK @JFYFCOLLECTIVE</a>
+                <a href="#">INSTAGRAM @JFYFCOLLECTIVE</a>
+                <a href="#">TIKTOK @JFYFCOLLECTIVE</a>
             </div>
         </div>
     </footer>
 
     <script>
+        // Smooth Header
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
         function enterSite() {
-            alert("Welcome to the JFYF® world.");
             window.scrollTo({
-                top: window.innerHeight,
+                top: window.innerHeight - 80,
                 behavior: 'smooth'
             });
         }
-        
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                const enterBtn = document.querySelector('.enter-btn');
-                if (enterBtn) enterBtn.click();
-            }
-        });
     </script>
 </body>
 </html>
+]
